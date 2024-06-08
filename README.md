@@ -1,6 +1,11 @@
-# sae2-01
+# SAÉ 2.01 - Développement d’une application
 
 ## Membres
-- LABESTE Raphaël : labe0015
-- DURUSSEL Valentin : duru0013
+- LABESTE Raphaël (_login_) : **labe0015**
+- DURUSSEL Valentin (_login_) : **duru0013**
 
+## Documentation
+
+
+
+## Projet
