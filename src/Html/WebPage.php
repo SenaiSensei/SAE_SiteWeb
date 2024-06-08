@@ -63,7 +63,7 @@ class WebPage
      *
      * @param string $content Le contenu à ajouter
      */
-    public function appendToHead(string $content) : void
+    public function appendToHead(string $content): void
     {
         $this->head .= "$content";
     }
@@ -73,7 +73,7 @@ class WebPage
      *
      * @param string $css Le contenu CSS à ajouter
      */
-    public function appendCss(string $css) : void
+    public function appendCss(string $css): void
     {
         $this->appendToHead("<style>$css</style>");
     }
@@ -83,7 +83,7 @@ class WebPage
      *
      * @param string $url L'URL du script CSS
      */
-    public function appendCssUrl(string $url) : void
+    public function appendCssUrl(string $url): void
     {
         $this->appendToHead('<link rel="stylesheet" href="'."$url".'">');
     }
@@ -93,7 +93,7 @@ class WebPage
      *
      * @param string $js Le contenu JavaScript à ajouter
      */
-    public function appendJs(string $js) : void
+    public function appendJs(string $js): void
     {
         $this->appendToHead("<script>$js</script>");
     }
@@ -103,7 +103,7 @@ class WebPage
      *
      * @param string $url L'URL du script JavaScript
      */
-    public function appendJsUrl(string $url) : void
+    public function appendJsUrl(string $url): void
     {
         $this->appendToHead("<script src=\"$url\"></script>");
     }
@@ -113,7 +113,7 @@ class WebPage
      *
      * @param string $content Le contenu à ajouter
      */
-    public function appendContent(string $content) : void
+    public function appendContent(string $content): void
     {
         $this->body .= $content;
     }
@@ -123,7 +123,7 @@ class WebPage
      *
      * @return string La page Web
      */
-    public function toHTML() : string
+    public function toHTML(): string
     {
         $head = $this->getHead();
         $title = $this->getTitle();
@@ -155,7 +155,7 @@ class WebPage
      */
     public function escapeString(string $string): string
     {
-        $chaine = htmlspecialchars($string,ENT_QUOTES | ENT_HTML5 | ENT_SUBSTITUTE);
+        $chaine = htmlspecialchars($string, ENT_QUOTES | ENT_HTML5 | ENT_SUBSTITUTE);
 
         return $chaine;
     }
@@ -167,6 +167,6 @@ class WebPage
      */
     public static function getLastModification(): string
     {
-        return "Dernière modification de cette page le ".date("d/m/Y à h:i:s",getlastmod());
+        return "Dernière modification de cette page le ".date("d/m/Y à h:i:s", getlastmod());
     }
 }
