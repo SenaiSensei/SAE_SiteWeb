@@ -1,0 +1,23 @@
+{
+    "name": "rapha/sae2-01",
+    "description": "Développement d'une application Web de consultation et de modification de série",
+    "type": "project",
+    "license": "Copyleft",
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Rapahël LABESTE",
+            "email": "raphael.labeste@etudiant.univ-reims.fr"
+        }
+    ],
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.58"
+    },
+  "require": {
+    "ext-pdo": "*"
+  }
+}
