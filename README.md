@@ -14,7 +14,7 @@ Lancement du serveur local PHP :
 ### Style de codage
 
 
-- `php vendor/bin/php-cs-fixer fix --dry-run` : permet de vérifier si le code du fichier respecte la recommandeation **PSR-12** sans modifier le fichier (`--dry-run` demande un exécution normale mais ne modifie pas les fichiers).
+- `php vendor/bin/php-cs-fixer fix --dry-run` : permet de vérifier si le code du fichier respecte la recommandation **PSR-12** sans modifier le fichier (`--dry-run` demande un exécution normale mais ne modifie pas les fichiers).
 - `composer test:cs` : permet de vérifier si le code du fichier respecte la recommandeation **PSR-12** sans modifier le fichier et en montrant les changements dans le fichier (`--diff` permet d'afficher les changements entre l'orginal est la ou la potentielle modification).
 - `composer fix:cs` : modifie le fichier afin que le code du fichier respecte la recommandeation **PSR-12** (`fix` demande une exécution normale).
 
