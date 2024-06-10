@@ -20,7 +20,7 @@ if (!empty($_GET['seasonId']) && ctype_digit((int)$_GET['seasonId'])) {
 
 
 try {
-    $season = Season::findById($SeasonId);
+    $season = Season::findById((int)$SeasonId);
 } catch (EntityNotFoundException $e) {
     http_response_code(404);
     exit;
