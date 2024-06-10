@@ -1,5 +1,8 @@
 <?php
 declare(strict_types=1);
+
+use Entity\Exception\EntityNotFoundException;
+use Entity\Exception\ParameterException;
 use Entity\Poster;
 
 try {
@@ -30,6 +33,9 @@ try {
     http_response_code(400);
 } catch (EntityNotFoundException) {
     http_response_code(404);
+    header('Content-Type: image/png');
+    readfile('default/default.png');
+    exit();
 } catch (Exception) {
     http_response_code(500);
 }
