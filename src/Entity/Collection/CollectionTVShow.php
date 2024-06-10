@@ -13,7 +13,7 @@ class CollectionTVShow
     {
         $stmt = MyPdo::getInstance()->prepare('
             SELECT id,name,originalName,homePage,overview,posterId
-            FROM TVSHOW
+            FROM tvshow
             ORDER BY name;
         ');
         $stmt->execute();

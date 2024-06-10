@@ -13,7 +13,7 @@ class CollectionSeason
     {
         $stmt = MyPdo::getInstance()->prepare('
             SELECT id,tvShowId,name,seasonNumber,posterId
-            FROM SEASON
+            FROM season
             WHERE tvShowId = ?
             ORDER BY seasonNumber;
         ');

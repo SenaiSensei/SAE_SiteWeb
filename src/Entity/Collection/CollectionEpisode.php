@@ -14,7 +14,7 @@ class CollectionEpisode
     {
         $stmt = MyPdo::getInstance()->prepare('
             SELECT id, seasonId, name, overview, episodeNumber
-            FROM EPISODE
+            FROM episode
             WHERE seasonId = ?
             ORDER BY episodeNumber;
         ');
