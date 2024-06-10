@@ -21,4 +21,5 @@ class CollectionTVShow
         return $stmt->fetchAll(PDO::FETCH_CLASS, TVShow::class);
     }
 
+
 }
