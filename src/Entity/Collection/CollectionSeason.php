@@ -9,7 +9,7 @@ use PDO;
 
 class CollectionSeason
 {
-    public static function findBySeasonId(int $TVShowId): array
+    public static function findByTVShowId(int $TVShowId): array
     {
         $stmt = MyPdo::getInstance()->prepare('
             SELECT id,tvShowId,name,seasonNumber,posterId
