@@ -3,6 +3,10 @@ declare(strict_types=1);
 
 namespace Entity;
 
+use Database\MyPdo;
+use Entity\Exception\EntityNotFoundException;
+use PDO;
+
 class TVShow
 {
     private int $id;
@@ -76,6 +80,23 @@ class TVShow
     {
         $this->posterId = $posterId;
         return $this;
+    }
+
+    public static function findById(int $id) : TVShow
+    {
+        $stmt = MyPDO::getInstance()->prepare(
+            <<<SQL
+                SELECT id,name,originalName,homePage,overview,posterId
+                FROM tvshow
+                WHERE id = ?
+            SQL
+        );
+        $stmt->execute([$id]);
+        $res = $stmt->fetchAll(PDO::FETCH_CLASS, TVShow::class);
+        if (!isset($res[0])) {
+            throw new EntityNotFoundException("No data has been found");
+        }
+        return $res[0];
     }
 
 
