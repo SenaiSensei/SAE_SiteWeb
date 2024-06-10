@@ -7,20 +7,21 @@ use Html\WebPage;
 use Entity\Collection\CollectionEpisode;
 use Entity\Season;
 
-$webpage = new WebPage();
 $SeasonId = (int)$_GET['seasonId'];
-
-$titre = "Série TV: {}";
-
-$webPage = new WebPage($titre);
-$webPage->appendContent("<h1>$titre</h1>");
-
-$stmt = CollectionEpisode::findBySeasonId($SeasonId);
-
 $season = Season::findById($SeasonId);
 $serie = TVShow::findById($season->getTvShowId());
 
-$webpage->appendContent("<img src='default/default.png' alt='Poster'>
+$titre = "Série TV: {$serie->getName()}";
+$titreSeason = $season->getName();
+
+$webPage = new WebPage($titre.' '.$titreSeason);
+$webPage->appendContent("<h1>$titre<br>$titreSeason</h1>");
+
+$stmt = CollectionEpisode::findBySeasonId($SeasonId);
+
+
+
+$webPage->appendContent("<img src='default/default.png' alt='Poster'>
     <a class='titre_serie' href='season.php?tvShowId={$season->getTvShowId()}'>{$serie->getName()}</a>
     <a class='titre_saison'>{$season->getName()}</a>
 ");
@@ -34,4 +35,4 @@ foreach ($stmt as $ligne) {
 }
 
 
-echo $webpage->toHTML();
+echo $webPage->toHTML();
