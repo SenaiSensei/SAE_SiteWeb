@@ -3,16 +3,23 @@
 declare(strict_types=1);
 
 use Html\WebPage;
+use Entity\Collection\CollectionTVShow;
 
 $titre = "Série TV";
 $webPage = new WebPage($titre);
 $webPage->appendContent("<h1>$titre</h1>");
 
-$webPage->appendContent("<a class='serie'>
+$stmt = CollectionTVShow::findAll();
+
+foreach ($stmt as $ligne) {
+    $webPage->appendContent("<a class='serie' href='season.php/seasonId={$webPage->escapeString((string)$ligne->getId())}'>
     <img src='default/default.png' alt='Poster'>
-    <a class='titre'>Titre série</a>
-    <a class='description'>Description série</a>
+    <section class='titre'>{$webPage->escapeString((string)$ligne->getName())}</section>
+    <section class='description'>{$webPage->escapeString((string)$ligne->getOverview())}</section>
 </a>");
+}
+
+
 
 
 
