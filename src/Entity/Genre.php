@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Entity;
 
-class genre
+class Genre
 {
     private int $id;
     private string $name;
