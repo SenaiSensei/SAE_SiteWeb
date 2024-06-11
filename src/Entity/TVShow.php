@@ -14,7 +14,7 @@ class TVShow
     private string $originalName;
     private string $homePage;
     private string $overview;
-    private int $posterId;
+    private ?int $posterId;
 
     public function getId(): int
     {
