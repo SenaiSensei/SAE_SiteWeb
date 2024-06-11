@@ -13,7 +13,7 @@ class Season
     private int $tvShowId;
     private string $name;
     private int $seasonNumber;
-    private int $posterId;
+    private ?int $posterId;
 
     public function getId(): int
     {
