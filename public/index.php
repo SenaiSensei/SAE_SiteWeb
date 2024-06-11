@@ -10,6 +10,9 @@ $webPage = new AppWebPage($titre);
 $webPage->appendCssUrl("css/index.css");
 $webPage->appendToHead("<meta name='description' content='Author: R.L., An app web to view and modify saves TV shows on a database'>");
 
+$webPage->appendToHead("<section class='menu'><a href='index.php' class='menu_accueil'>Accueil</a>
+</section>");
+
 $stmt = CollectionTVShow::findAll();
 
 foreach ($stmt as $ligne) {
