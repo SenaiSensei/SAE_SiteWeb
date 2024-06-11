@@ -25,7 +25,7 @@ $stmt = CollectionSeason::findByTVShowId((int)$_GET['tvShowId']);
 foreach ($stmt as $ligne) {
     $webPage->appendContent("<section class='season'>
     <img src='poster.php?posterId={$ligne->getPosterId()}' alt='Poster'>
-    <a class='season_title' href='episode.php?seasonId={$ligne->getId()}'>{$ligne->getId()}:id {$ligne->getTVShowId()}:TvShowId /{$ligne->getName()}</a>
+    <a class='season_title' href='episode.php?seasonId={$ligne->getId()}'>{$ligne->getName()}</a>
 </section>");
 }
 
