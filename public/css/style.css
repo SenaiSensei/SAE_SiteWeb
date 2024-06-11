@@ -1,0 +1,26 @@
+.header {
+    display: flex;
+    justify-content: center;
+    font-weight: bolder;
+    font-size: 3em;
+    border: solid 3px;
+    margin: 16px;
+}
+
+.content {
+    margin: 16px;
+    overflow: scroll;
+    scrollbar-width: auto;
+    scrollbar-color: black lightgray;
+    display: flex;
+    flex-direction: column;
+    border: solid 3px;
+    padding: 8px;
+}
+
+.footer {
+    border: solid 3px;
+    display: flex;
+    justify-content: center;
+    margin: 16px;
+}

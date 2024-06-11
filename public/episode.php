@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Entity\Exception\EntityNotFoundException;
 use Entity\TVShow;
-use Html\WebPage;
+use Html\AppWebPage;
 use Entity\Collection\CollectionEpisode;
 use Entity\Season;
 
@@ -35,8 +35,7 @@ try {
 $titre = "Série TV: {$serie->getName()}";
 $titreSeason = $season->getName();
 
-$webPage = new WebPage($titre.' '.$titreSeason);
-$webPage->appendContent("<h1>$titre<br>$titreSeason</h1>");
+$webPage = new AppWebPage($titre." ".$titreSeason);
 
 $stmt = CollectionEpisode::findBySeasonId((int)$SeasonId);
 

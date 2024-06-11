@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use Html\WebPage;
+use Html\AppWebPage;
 use Entity\Collection\CollectionTVShow;
 
 $titre = "Série TV";
-$webPage = new WebPage($titre);
+$webPage = new AppWebPage($titre);
 $webPage->appendContent("<h1>$titre</h1>");
 
 $stmt = CollectionTVShow::findAll();
