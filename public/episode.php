@@ -36,25 +36,22 @@ $titre = "Série TV: {$serie->getName()}";
 $titreSeason = $season->getName();
 
 $webPage = new AppWebPage($titre." ".$titreSeason);
-$webPage->appendCssUrl("css/episode.css");
+$webPage->appendToHead("<meta name='description' content='Author: R.L., An app web to view and modify saves TV shows on a database'>");
 
 $stmt = CollectionEpisode::findBySeasonId((int)$SeasonId);
 
 
-$webPage->appendContent("<section class='season'>
-    <img src='poster.php?posterId={$season->getPosterId()}' alt='Poster'>
-    <section class='title'>
-    <a class='title_serie' href='season.php?tvShowId={$season->getTvShowId()}'>{$serie->getName()}</a>
-    <a class='title_season'>{$season->getName()}</a>
-    </section>
-    </section>
+$webPage->appendContent("<img src='poster.php?posterId={$season->getPosterId()}' alt='Poster'>
+    <a class='titre_serie' href='season.php?tvShowId={$season->getTvShowId()}'>{$serie->getName()}</a>
+    <a class='titre_saison'>{$season->getName()}</a>
 ");
 
 foreach ($stmt as $ligne) {
-    $webPage->appendContent("<section class='episodes'>
-    <a class='num_titre_ep'>{$webPage->escapeString((string)$ligne->getEpisodeNumber())} - {$webPage->escapeString((string)$ligne->getName())}</a>
+    $webPage->appendContent("<a class='episodes'>
+    <a class='num_ep'>{$webPage->escapeString((string)$ligne->getEpisodeNumber())}</a>
+    <a class='titre_ep'>{$webPage->escapeString((string)$ligne->getName())}</a>
     <a class='description_ep'>{$webPage->escapeString((string)$ligne->getOverview())}</a>
-</section>");
+</a>");
 }
 
 
