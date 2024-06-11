@@ -17,4 +17,35 @@
 
 .season {
     margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+}
+
+img {
+    width: 90px;
+}
+
+.titre_serie, .titre_season {
+    display: flex;
+    margin-top: 20px;
+}
+
+.header {
+    font-size: 1em;
+}
+
+@media (min-width: 500px) {
+    img {
+        width: 130px;
+    }
+}
+
+@media (min-width: 650px) {
+    img {
+        width: 220px;
+    }
+    .titre_serie, .titre_season {
+        flex-direction: column;
+        margin-left: 50px;
+    }
 }
