@@ -52,3 +52,15 @@ body {
     box-shadow: 0 4px #4f4f4f;
     transform: translateY(4px);
 }
+
+
+.filtre .filter {
+    margin: 16px;
+    display: flex;
+    justify-content: space-evenly;
+    color: black;
+    border: solid 3px;
+}
+.filter_title {
+    font-weight: bold;
+}
