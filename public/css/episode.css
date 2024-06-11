@@ -1,0 +1,20 @@
+.episodes {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid;
+    border-radius: 24px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.num_titre_ep {
+    font-weight: bold;
+}
+
+.description_ep {
+    padding-top: 5px;
+}
+
+.season {
+    margin-bottom: 15px;
+}
