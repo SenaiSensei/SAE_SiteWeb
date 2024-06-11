@@ -17,8 +17,6 @@ if (!empty($_GET['seasonId']) && ctype_digit($_GET['seasonId'])) {
 }
 
 
-
-
 try {
     $season = Season::findById((int)$SeasonId);
 } catch (EntityNotFoundException $e) {
@@ -43,8 +41,7 @@ $webPage->appendContent("<h1>$titre<br>$titreSeason</h1>");
 $stmt = CollectionEpisode::findBySeasonId((int)$SeasonId);
 
 
-
-$webPage->appendContent("<img src='default/default.png' alt='Poster'>
+$webPage->appendContent("<img src='poster.php?posterId={$season->getPosterId()}' alt='Poster'>
     <a class='titre_serie' href='season.php?tvShowId={$season->getTvShowId()}'>{$serie->getName()}</a>
     <a class='titre_saison'>{$season->getName()}</a>
 ");
