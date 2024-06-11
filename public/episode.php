@@ -8,8 +8,8 @@ use Html\WebPage;
 use Entity\Collection\CollectionEpisode;
 use Entity\Season;
 
-$SeasonId = (int)$_GET['seasonId'];
-if (!empty($_GET['seasonId']) && ctype_digit((int)$_GET['seasonId'])) {
+$SeasonId = $_GET['seasonId'];
+if (!empty($_GET['seasonId']) && ctype_digit($_GET['seasonId'])) {
     $SeasonId = $_GET['seasonId'];
 } else {
     header('Location: http://localhost:8000/index.php');
@@ -40,7 +40,7 @@ $titreSeason = $season->getName();
 $webPage = new WebPage($titre.' '.$titreSeason);
 $webPage->appendContent("<h1>$titre<br>$titreSeason</h1>");
 
-$stmt = CollectionEpisode::findBySeasonId($SeasonId);
+$stmt = CollectionEpisode::findBySeasonId((int)$SeasonId);
 
 
 
