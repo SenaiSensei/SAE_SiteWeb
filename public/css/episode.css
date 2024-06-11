@@ -19,24 +19,57 @@
     margin-bottom: 15px;
     display: flex;
     flex-direction: row;
+    padding: 8px;
 }
 
 img {
     width: 90px;
 }
 
-.titre_serie, .titre_season {
+.title_serie, .title_season {
     display: flex;
-    margin-top: 20px;
+    justify-content: flex-end;
+    font-size: 1em;
+}
+
+.title_season {
+    text-align: end;
+}
+
+.title_serie {
+    text-decoration: none;
+    color: #4783ef;
+}
+
+.title_serie:hover {
+    color: #266bec;
+
 }
 
 .header {
     font-size: 1em;
 }
 
+.season{
+    justify-content: space-between;
+    border: 1px solid;
+    border-radius: 24px;
+}
+
 @media (min-width: 500px) {
     img {
         width: 130px;
+    }
+    .season{
+        justify-content: space-between;
+    }
+    .title {
+        font-size: 1.5em;
+        padding-top: 75px;
+    }
+
+    .header {
+        font-size: 1.5em;
     }
 }
 
@@ -44,8 +77,30 @@ img {
     img {
         width: 220px;
     }
-    .titre_serie, .titre_season {
-        flex-direction: column;
-        margin-left: 50px;
+    .season{
+        justify-content: space-between;
+    }
+    .title {
+        font-size: 2em;
+        padding-top: 100px;
+    }
+    .header {
+        font-size: 2em;
+    }
+}
+
+@media (min-width: 830px) {
+    img {
+        width: 350px;
+    }
+    .season{
+        justify-content: space-between;
+    }
+    .title {
+        font-size: 2em;
+        padding-top: 150px;
+    }
+    .header {
+        font-size: 2em;
     }
 }

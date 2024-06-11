@@ -43,8 +43,10 @@ $stmt = CollectionEpisode::findBySeasonId((int)$SeasonId);
 
 $webPage->appendContent("<section class='season'>
     <img src='poster.php?posterId={$season->getPosterId()}' alt='Poster'>
-    <a class='titre_serie' href='season.php?tvShowId={$season->getTvShowId()}'>{$serie->getName()}</a>
-    <a class='titre_season'>{$season->getName()}</a>
+    <section class='title'>
+    <a class='title_serie' href='season.php?tvShowId={$season->getTvShowId()}'>{$serie->getName()}</a>
+    <a class='title_season'>{$season->getName()}</a>
+    </section>
     </section>
 ");
 
