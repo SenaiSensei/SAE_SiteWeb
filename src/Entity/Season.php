@@ -13,7 +13,7 @@ class Season
     private int $tvShowId;
     private string $name;
     private int $seasonNumber;
-    private int $posterId;
+    private ?int $posterId;
 
     public function getId(): int
     {
@@ -46,6 +46,7 @@ class Season
                 SELECT id,tvShowId,name,seasonNumber,posterId
                 FROM season
                 WHERE id = ?
+                ORDER BY seasonNumber
         ');
         $stmt->execute([$id]);
         $res = $stmt->fetchAll(PDO::FETCH_CLASS, Season::class);

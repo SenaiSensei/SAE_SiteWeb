@@ -41,9 +41,6 @@ $webPage->appendMenu("<section class='menu'><a href='index.php' class='menu_accu
 $webPage->appendCssUrl("css/episode.css");
 $webPage->appendToHead("<meta name='description' content='Author: R.L., An app web to view and modify saves TV shows on a database'>");
 
-$stmt = CollectionEpisode::findBySeasonId((int)$SeasonId);
-
-
 $webPage->appendContent("<section class='season'>
     <img src='poster.php?posterId={$season->getPosterId()}' alt='Poster'>
     <section class='title'>
@@ -53,6 +50,7 @@ $webPage->appendContent("<section class='season'>
     </section>
 ");
 
+$stmt = CollectionEpisode::findBySeasonId((int)$SeasonId);
 foreach ($stmt as $ligne) {
     $webPage->appendContent("<section class='episodes'>
     <a class='num_title_ep'>{$webPage->escapeString((string)$ligne->getEpisodeNumber())} - {$webPage->escapeString((string)$ligne->getName())}</a>
