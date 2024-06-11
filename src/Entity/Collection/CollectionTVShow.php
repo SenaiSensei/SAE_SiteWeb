@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Entity\Collection;
 
 use Database\MyPdo;
+use Entity\Genre;
 use Entity\TVShow;
 use PDO;
 
@@ -21,5 +22,18 @@ class CollectionTVShow
         return $stmt->fetchAll(PDO::FETCH_CLASS, TVShow::class);
     }
 
+    public static function findByGenreId(int $id): array
+    {
+        $stmt = MyPdo::getInstance()->prepare('
+            SELECT id,name,originalName,homePage,overview,posterId
+            FROM tvshow
+            WHERE id in (SELECT id
+                         FROM GENRE
+                         WHERE id = ?);
+        ');
+
+        $stmt->execute([$id]);
+        return $stmt->fetchAll(PDO::FETCH_CLASS, Genre::class);
+    }
 
 }
