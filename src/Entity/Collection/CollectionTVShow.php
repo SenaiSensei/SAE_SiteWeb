@@ -27,13 +27,13 @@ class CollectionTVShow
         $stmt = MyPdo::getInstance()->prepare('
             SELECT id,name,originalName,homePage,overview,posterId
             FROM tvshow
-            WHERE id in (SELECT id
-                         FROM GENRE
-                         WHERE id = ?);
+            WHERE id in (SELECT tvShowId
+                         FROM tvshow_genre
+                         WHERE genreId = ?);
         ');
 
         $stmt->execute([$id]);
-        return $stmt->fetchAll(PDO::FETCH_CLASS, Genre::class);
+        return $stmt->fetchAll(PDO::FETCH_CLASS, TVShow::class);
     }
 
 }
