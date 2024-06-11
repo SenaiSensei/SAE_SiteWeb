@@ -36,6 +36,7 @@ $titre = "Série TV: {$serie->getName()}";
 $titreSeason = $season->getName();
 
 $webPage = new AppWebPage($titre." ".$titreSeason);
+$webPage->appendToHead("<meta name='description' content='Author: R.L., An app web to view and modify saves TV shows on a database'>");
 
 $stmt = CollectionEpisode::findBySeasonId((int)$SeasonId);
 
