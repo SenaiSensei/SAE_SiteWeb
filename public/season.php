@@ -3,11 +3,24 @@
 declare(strict_types=1);
 
 use Entity\Collection\CollectionSeason;
+use Entity\Exception\EntityNotFoundException;
 use Entity\TVShow;
 use Html\AppWebPage;
 
 $TVShowId = (int)$_GET['tvShowId'];
-$serie = TVShow::findById($TVShowId);
+if (!empty($_GET['tvShowId']) && ctype_digit($_GET['tvShowId'])) {
+    $TVShowId = (int)$_GET['tvShowId'];
+} else {
+    header('Location: http://localhost:8000/index.php');
+    exit;
+}
+
+try {
+    $serie = TVShow::findById($TVShowId);
+} catch (EntityNotFoundException $e) {
+    http_response_code(404);
+    exit;
+}
 
 $title = "Série TV: {$serie->getName()}";
 
