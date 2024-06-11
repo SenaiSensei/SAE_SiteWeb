@@ -17,7 +17,7 @@ $webPage->appendCssUrl("css/index.css");
 $webPage->appendToHead("<meta name='description' content='Author: R.L., An app web to view and modify saves TV shows on a database'>");
 
 $webPage->appendMenu("<a href='index.php?genre=0' class='menu_accueil'>Accueil</a>");
-$webPage->appendFiltre("<form action='index.php' method='get' class='filter'>Filtre : <label> <label><input type='radio' name='genre' value='0'>Aucun</label></label>");
+$webPage->appendFiltre("<form action='index.php' method='get' class='filter'><label class='filter_title'>Filtre :</label><label><input type='radio' name='genre' value='0'>Aucun</label></label>");
 $genres = CollectionGenre::findAll();
 
 foreach ($genres as $ligne) {
