@@ -7,6 +7,7 @@ use Entity\Collection\CollectionTVShow;
 
 $titre = "Série TV";
 $webPage = new AppWebPage($titre);
+$webPage->appendContent("<h1>$titre</h1>");
 
 $stmt = CollectionTVShow::findAll();
 
