@@ -9,14 +9,15 @@ use PDO;
 
 class CollectionGenre
 {
-    public static function findAll(): array
+    public static function findByGenreId(int $id): array
     {
         $stmt = MyPdo::getInstance()->prepare('
             SELECT id, name
-            FROM genre;
+            FROM genre
+            WHERE id = ?;
         ');
 
-        $stmt->execute();
+        $stmt->execute([$id]);
         return $stmt->fetchAll(PDO::FETCH_CLASS, Genre::class);
     }
 
