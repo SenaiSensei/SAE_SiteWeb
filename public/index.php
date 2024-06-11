@@ -12,27 +12,12 @@ $webPage = new AppWebPage($titre);
 $webPage->appendCssUrl("css/index.css");
 $webPage->appendToHead("<meta name='description' content='Author: R.L., An app web to view and modify saves TV shows on a database'>");
 
-$webPage->appendToHead("<section class='menu'><a href='index.php' class='menu_accueil'>Accueil</a>
-<form action='index.php' method='POST' class='filtre'>
-<p>Filtre</p>
-<label><input name='id' type='radio' value='0' checked>Aucun</label>
-<section class='value_filtre'>");
-
+$webPage->appendMenu("<a href='index.php' class='menu_accueil'>Accueil</a>");
 
 
 $genres = CollectionGenre::findAll();
 
-foreach ($genres as $ligne) {
-    $webPage->appendToHead("
-    <label><input name='id' type='radio' value='{$ligne->getId()}'>{$ligne->getName()}</label>");
-}
-
-
-if ($_POST[''] == 0) {
-    $stmt = CollectionTVShow::findAll();
-}
-
-$webPage->appendToHead("</section></form> </section>");
+$stmt = CollectionTVShow::findAll();
 
 foreach ($stmt as $ligne) {
     $webPage->appendContent("<a class='serie' href='season.php/seasonId={$webPage->escapeString((string)$ligne->getId())}'>
