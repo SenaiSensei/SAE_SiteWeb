@@ -6,7 +6,8 @@ namespace Html;
 
 class AppWebPage extends WebPage
 {
-    private string $menu;
+    private string $menu ="";
+    private string $filtre ="";
     public function __construct(string $title = '')
     {
         parent::__construct($title);
@@ -15,13 +16,25 @@ class AppWebPage extends WebPage
 
     public function appendMenu(string $menu)
     {
-        $this->menu = $menu;
+        $this->menu .= $menu;
     }
 
     public function getMenu()
     {
         return $this->menu;
     }
+
+    public function appendFiltre(string $filtre)
+    {
+        $this->filtre .= $filtre;
+    }
+
+    public function getFiltre()
+    {
+        return $this->filtre;
+    }
+
+
 
     public function toHTML(): string
     {
@@ -31,6 +44,7 @@ class AppWebPage extends WebPage
         $body = $this->getBody();
         $lastModif = WebPage::getLastModification();
         $menu = $this->getMenu();
+        $filtre = $this->getFiltre();
         $html = <<<HTML
         <!DOCTYPE html>
         <html lang="fr">\n
@@ -43,6 +57,7 @@ class AppWebPage extends WebPage
             <body>
             <section class="menu">$menu</section>
             <section class="header"><h1>$title</h1></section>
+            <section class="filtre">$filtre</section>
                 <section class="content">$body</section>
             </body>
             <footer><a class="footer">$lastModif</a></footer>
