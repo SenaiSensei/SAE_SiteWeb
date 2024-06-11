@@ -45,7 +45,8 @@ class Season
         $stmt = MyPDO::getInstance()->prepare('
                 SELECT id,tvShowId,name,seasonNumber,posterId
                 FROM season
-                WHERE id = ?
+                WHERE tvShowId = ?
+                ORDER BY seasonNumber
         ');
         $stmt->execute([$id]);
         $res = $stmt->fetchAll(PDO::FETCH_CLASS, Season::class);
