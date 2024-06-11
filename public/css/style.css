@@ -53,8 +53,14 @@ body {
     transform: translateY(4px);
 }
 
-.filtre {
-    color: white;
-    flex:1;
-    text-align: center;
+
+.filtre .filter {
+    margin: 16px;
+    display: flex;
+    justify-content: space-evenly;
+    color: black;
+    border: solid 3px;
+}
+.filter_title {
+    font-weight: bold;
 }
