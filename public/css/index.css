@@ -8,7 +8,7 @@ img {
 
 .content {
     padding: 8px;
-    height: 480px;
+    height: 600px;
 
 }
 
@@ -50,6 +50,30 @@ img {
     padding: 8px;
 }
 
+@media (min-width: 210px) {
+    .content {
+        height: 620px;
+    }
+}
+
+@media (min-width: 222px) {
+    .content {
+        height: 630px;
+    }
+}
+
+@media (min-width: 287px) {
+    .content {
+        height: 640px;
+    }
+}
+
+@media (min-width: 382px) {
+    .content {
+        height: 725px;
+    }
+}
+
 @media (min-width: 400px) {
 
     .serie {
@@ -60,19 +84,10 @@ img {
         flex-direction: row-reverse;
         justify-content: space-between;
     }
-
-    .content {
-        height: 570px;
-    }
 }
 
-@media (min-width: 800px) {
+@media (min-width: 540px) {
     .content {
-        height: 590px;
+        height: 645px;
     }
-
-}
-
-@media (min-width: 1200px) {
-
 }
