@@ -11,9 +11,18 @@ $webPage->appendCssUrl("css/index.css");
 $webPage->appendToHead("<meta name='description' content='Author: R.L., An app web to view and modify saves TV shows on a database'>");
 
 $webPage->appendToHead("<section class='menu'><a href='index.php' class='menu_accueil'>Accueil</a>
-</section>");
+<form action='filtre.php' method='GET' class='filtre'>
+<p>Filtre</p>
+<section class='value_filtre'>");
 
 $stmt = CollectionTVShow::findAll();
+
+foreach ($stmt as $ligne) {
+    $webPage->appendToHead("
+    <label><input name='id' type='radio' value='1'>1</label>");
+}
+
+$webPage->appendToHead("</section></form> </section>");
 
 foreach ($stmt as $ligne) {
     $webPage->appendContent("<a class='serie' href='season.php/seasonId={$webPage->escapeString((string)$ligne->getId())}'>
