@@ -2,14 +2,37 @@
 
 declare(strict_types=1);
 
+use Entity\Exception\EntityNotFoundException;
 use Entity\TVShow;
 use Html\WebPage;
 use Entity\Collection\CollectionEpisode;
 use Entity\Season;
 
 $SeasonId = (int)$_GET['seasonId'];
-$season = Season::findById($SeasonId);
-$serie = TVShow::findById($season->getTvShowId());
+if (!empty($_GET['seasonId']) && ctype_digit((int)$_GET['seasonId'])) {
+    $SeasonId = $_GET['seasonId'];
+} else {
+    header('Location: http://localhost:8000/index.php');
+    exit;
+}
+
+
+
+
+try {
+    $season = Season::findById((int)$SeasonId);
+} catch (EntityNotFoundException $e) {
+    http_response_code(404);
+    exit;
+}
+
+
+try {
+    $serie = TVShow::findById($season->getTvShowId());
+} catch (EntityNotFoundException $e) {
+    http_response_code(404);
+    exit;
+}
 
 $titre = "Série TV: {$serie->getName()}";
 $titreSeason = $season->getName();
