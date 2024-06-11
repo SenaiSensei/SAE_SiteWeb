@@ -8,6 +8,7 @@ use Entity\Collection\CollectionTVShow;
 $titre = "Série TV";
 $webPage = new AppWebPage($titre);
 $webPage->appendCssUrl("css/index.css");
+$webPage->appendToHead("<meta name='description' content='Author: R.L., An app web to view and modify saves TV shows on a database'>");
 
 $stmt = CollectionTVShow::findAll();
 
