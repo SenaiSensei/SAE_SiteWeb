@@ -4,11 +4,20 @@ declare(strict_types=1);
 
 use Entity\Collection\CollectionGenre;
 use Entity\Exception\EntityNotFoundException;
+use Entity\TVShow;
 use Html\AppWebPage;
 use Entity\Collection\CollectionTVShow;
 
 if (!isset($_GET['genre'])) {
     header('Location: http://localhost:8000/index.php?genre=0');
+}
+
+if ($_GET['genre'] != 0) {
+    try {
+        $stmt = TVShow::findByGenreId((int)$_GET['genre']);
+    } catch (EntityNotFoundException) {
+        header('Location: http://localhost:8000/index.php?genre=0');
+    }
 }
 
 $titre = "Série TV";

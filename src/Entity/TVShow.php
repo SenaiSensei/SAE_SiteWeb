@@ -99,6 +99,24 @@ class TVShow
         return $res[0];
     }
 
+    public static function findByGenreId(int $id): TVShow
+    {
+        $stmt = MyPdo::getInstance()->prepare('
+            SELECT id,name,originalName,homePage,overview,posterId
+            FROM tvshow
+            WHERE id in (SELECT tvShowId
+                         FROM tvshow_genre
+                         WHERE genreId = ?);
+        ');
+
+        $stmt->execute([$id]);
+        $res= $stmt->fetchAll(PDO::FETCH_CLASS, TVShow::class);
+        if (!isset($res[0])) {
+            throw new EntityNotFoundException("No data has been found");
+        }
+        return $res[0];
+    }
+
 
 
 }
