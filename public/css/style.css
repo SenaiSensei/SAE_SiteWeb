@@ -53,6 +53,56 @@ body {
     transform: translateY(4px);
 }
 
+.menu_edit {
+    text-decoration: none;
+    color: white;
+    flex:1;
+    text-align: center;
+}
+
+.menu_edit:hover {
+    background-color: #1a1a1a;
+}
+
+.menu_edit:active {
+    background-color: #1a1a1a;
+    box-shadow: 0 4px #4f4f4f;
+    transform: translateY(4px);
+}
+
+.menu_delete {
+    text-decoration: none;
+    color: white;
+    flex:1;
+    text-align: center;
+}
+
+.menu_delete:hover {
+    background-color: #1a1a1a;
+}
+
+.menu_delete:active {
+    background-color: #1a1a1a;
+    box-shadow: 0 4px #4f4f4f;
+    transform: translateY(4px);
+}
+
+.menu_create {
+    text-decoration: none;
+    color: white;
+    flex:1;
+    text-align: center;
+}
+
+.menu_create:hover {
+    background-color: #1a1a1a;
+}
+
+.menu_create:active {
+    background-color: #1a1a1a;
+    box-shadow: 0 4px #4f4f4f;
+    transform: translateY(4px);
+}
 
 .filtre .filter {
     margin: 16px;
