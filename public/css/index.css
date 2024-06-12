@@ -2,6 +2,11 @@ img {
     object-fit: contain;
 }
 
+.menu {
+    flex-direction: column;
+    gap: 8px;
+}
+
 .content {
     padding: 8px;
     height: 600px;
@@ -47,30 +52,6 @@ img {
     padding: 8px;
 }
 
-@media (min-width: 210px) {
-    .content {
-        height: 620px;
-    }
-}
-
-@media (min-width: 222px) {
-    .content {
-        height: 630px;
-    }
-}
-
-@media (min-width: 287px) {
-    .content {
-        height: 640px;
-    }
-}
-
-@media (min-width: 382px) {
-    .content {
-        height: 725px;
-    }
-}
-
 @media (min-width: 400px) {
 
     .serie {
@@ -83,8 +64,32 @@ img {
     }
 }
 
-@media (min-width: 540px) {
+@media (min-width: 800px) {
+    .menu {
+        flex-direction: row;
+    }
+
+    .menu_accueil {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .filter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (min-width: 1200px) {
     .content {
-        height: 645px;
+        height: 640px;
+    }
+}
+
+@media (min-width: 1500px) {
+    .content {
+        height: 725px;
     }
 }
