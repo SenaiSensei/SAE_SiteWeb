@@ -39,7 +39,7 @@ $webPage = new AppWebPage($titre." ".$titreSeason);
 $webPage->appendMenu("<section class='menu'><a href='index.php' class='menu_accueil'>Accueil</a>
 </section>");
 $webPage->appendCssUrl("css/episode.css");
-$webPage->appendToHead("<meta name='description' content='Author: R.L., An app web to view and modify saves TV shows on a database'>");
+$webPage->appendToHead("<meta name='description' content='Author: V.D., An app web to view episodes shows on a database'>");
 
 $webPage->appendContent("<section class='season'>
     <img src='poster.php?posterId={$season->getPosterId()}' alt='Poster'>
