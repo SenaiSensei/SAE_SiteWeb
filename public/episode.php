@@ -36,8 +36,7 @@ $titre = "Série TV: {$serie->getName()}";
 $titreSeason = $season->getName();
 
 $webPage = new AppWebPage($titre." ".$titreSeason);
-$webPage->appendMenu("<section class='menu'><a href='index.php' class='menu_accueil'>Accueil</a>
-</section>");
+$webPage->appendMenu("<a href='index.php' class='menu_accueil'>Accueil</a>");
 $webPage->appendCssUrl("css/episode.css");
 $webPage->appendToHead("<meta name='description' content='Author: V.D., An app web to view episodes shows on a database'>");
 
