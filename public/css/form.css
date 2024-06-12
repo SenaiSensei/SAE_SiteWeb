@@ -1,0 +1,53 @@
+.header {
+    font-size: 0.8em;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    gap:8px;
+}
+
+label input {
+    width:95%;
+}
+
+@media (min-width: 400px ) {
+    .header {
+        font-size: 1em;
+    }
+}
+
+@media (min-width: 400px ) {
+    .header {
+        font-size: 1.5em;
+    }
+    label input {
+        width:99%;
+    }
+}
+
+@media (min-width: 1200px ) {
+    .header {
+        font-size: 2em;
+    }
+}
+
+@media (min-width: 1500px) {
+    .header {
+        font-size: 3em;
+    }
+}
+
+
+
+
+
+
+

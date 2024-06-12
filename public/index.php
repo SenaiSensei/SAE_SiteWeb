@@ -26,15 +26,18 @@ $webPage->appendCssUrl("css/index.css");
 $webPage->appendToHead("<meta name='description' content='Author: R.L., An app web to view and modify saves TV shows on a database'>");
 
 $webPage->appendMenu("<a href='index.php?genre=0' class='menu_accueil'>Accueil</a>");
-$webPage->appendFiltre("<form action='index.php' method='get' class='filter'><label class='filter_title'>Filtre :</label><label><input type='radio' name='genre' value='0'>Aucun</label></label>");
+$webPage->appendMenu("<a href='admin/tvshow-form.php' class='menu_create'>Création</a>");
+
+$webPage->appendFiltre("<form action='index.php' method='get' class='filter'><label class='filter_title'>Filtre</label>
+<select name='genre'><option value='0'>Aucun</option>");
 $genres = CollectionGenre::findAll();
-
 foreach ($genres as $ligne) {
-    $webPage->appendFiltre("<label><input type='radio' name='genre' value='{$ligne->getId()}'>{$ligne->getName()}</label>");
+    $webPage->appendFiltre("<option value='{$ligne->getId()}'>{$ligne->getName()}</option>");
 }
+$webPage->appendFiltre("</select>
+<button type='submit'>Search</button></label></label></form>");
 
-
-$webPage->appendFiltre("<button type='submit'>Search</button></label></form>");
+$webPage->appendFiltre("");
 
 if (!ctype_digit($_GET['genre'])) {
     header('Location: http://localhost:8000/index.php?genre=0');
@@ -48,7 +51,7 @@ if ($_GET['genre'] == 0) {
         <img src='poster.php?posterId={$ligne->getPosterId()}' alt='Poster'>
         <section> <section class='titre'>{$webPage->escapeString((string)$ligne->getName())}</section>
         <section class='description'>{$webPage->escapeString((string)$ligne->getOverview())}</section></section>
-        <form action='admin/tvshow-form.php' method='get' class='edit'><label><input name='tvShowId' value='{$webPage->escapeString((string)$ligne->getId())}' hidden='hidden'></label> <button type='submit'>Edit</button></form>
+        
     </a>");
     }
 } else {

@@ -171,7 +171,7 @@ class TVShow
     {
         $delete = MyPDO::getInstance()->prepare(
             <<<'SQL'
-	DELETE FROM tvShow
+	DELETE FROM tvshow
 	WHERE id = ?
 SQL
         );

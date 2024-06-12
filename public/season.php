@@ -26,6 +26,8 @@ $title = "Série TV: {$serie->getName()}";
 
 $webPage = new AppWebPage($title);
 $webPage->appendMenu("<a href='index.php?genre=0' class='menu_accueil'>Accueil</a>");
+$webPage->appendMenu("<a href='admin/tvshow-form.php?tvShowId={$TVShowId}' class='menu_edit'>Éditer</a>");
+$webPage->appendMenu("<a href='admin/tvshow-delete.php?tvShowId={$TVShowId}' class='menu_delete'>Supprimer</a>");
 $webPage->appendCssUrl("css/season.css");
 $webPage->appendToHead("<meta name='description' content='Author: V.D., An app web to view season shows on a database'>");
 
