@@ -140,6 +140,16 @@ class TVShow
         return $this;
     }
 
+    protected function insert(): self
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            'INSERT INTO tvShow (name,originalName,overview) VALUES (:name,:originalName, :overview)'
+        );
+        $stmt->execute([':name' => $this->name,':originalName' => $this->originalName,':overview' => $this->overview]);
+        $this->setId(intval(MyPdo::getInstance()->lastInsertId()));
+        return $this;
+    }
+
 
 
 }
