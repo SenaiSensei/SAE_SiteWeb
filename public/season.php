@@ -26,20 +26,24 @@ $title = "Série TV: {$serie->getName()}";
 
 $webPage = new AppWebPage($title);
 $webPage->appendMenu("<a href='index.php?genre=0' class='menu_accueil'>Accueil</a>");
+$webPage->appendCssUrl("css/season.css");
+$webPage->appendToHead("<meta name='description' content='Author: V.D., An app web to view season shows on a database'>");
 
-
-$webPage->appendContent("<img src='poster.php?posterId={$serie->getPosterId()}' alt='Poster'>
+$webPage->appendContent("<section class='serie'>
+    <img src='poster.php?posterId={$serie->getPosterId()}' alt='Poster'>
+    <section class='serie_content'>
     <a class='title_serie'>{$serie->getName()}</a>
     <a class='origin_title_serie'>{$serie->getOriginalName()}</a>
-    <a class='desc_title_serie'>{$serie->getOverview()}</a>
+    <a class='desc_title_serie'>{$serie->getOverview()}</a></section></section>
 ");
 
 $stmt = CollectionSeason::findByTVShowId((int)$_GET['tvShowId']);
+
 foreach ($stmt as $ligne) {
-    $webPage->appendContent("<section class='season'>
+    $webPage->appendContent("<a class='season' href='episode.php?seasonId={$ligne->getId()}'>
     <img src='poster.php?posterId={$ligne->getPosterId()}' alt='Poster'>
-    <a class='season_title' href='episode.php?seasonId={$ligne->getId()}'>{$ligne->getName()}</a>
-</section>");
+    <section class='season_title'>{$ligne->getName()}</section>
+</a>");
 }
 
 

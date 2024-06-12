@@ -52,8 +52,7 @@ img {
 
 .season{
     justify-content: space-between;
-    border: 1px solid;
-    border-radius: 24px;
+    border: 3px solid;
 }
 
 @media (min-width: 500px) {
@@ -102,5 +101,31 @@ img {
     }
     .header {
         font-size: 2em;
+    }
+}
+
+@media (min-width: 210px) {
+    .content {
+        height: 620px;
+    }
+}
+@media (min-width: 222px) {
+    .content {
+        height: 630px;
+    }
+}
+@media (min-width: 287px) {
+    .content {
+        height: 640px;
+    }
+}
+@media (min-width: 382px) {
+    .content {
+        height: 725px;
+    }
+}
+@media (min-width: 540px) {
+    .content {
+        height: 645px;
     }
 }
