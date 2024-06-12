@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Entity;
@@ -82,7 +83,7 @@ class TVShow
         return $this;
     }
 
-    public static function findById(int $id) : TVShow
+    public static function findById(int $id): TVShow
     {
         $stmt = MyPDO::getInstance()->prepare(
             <<<SQL
@@ -110,7 +111,7 @@ class TVShow
         ');
 
         $stmt->execute([$id]);
-        $res= $stmt->fetchAll(PDO::FETCH_CLASS, TVShow::class);
+        $res = $stmt->fetchAll(PDO::FETCH_CLASS, TVShow::class);
         if (!isset($res[0])) {
             throw new EntityNotFoundException("No data has been found");
         }
@@ -164,6 +165,21 @@ class TVShow
             $output = $this->update();
         }
         return $output;
+    }
+
+    public function delete(): self
+    {
+        $delete = MyPDO::getInstance()->prepare(
+            <<<'SQL'
+	DELETE FROM tvShow
+	WHERE id = ?
+SQL
+        );
+        $delete->execute([$this->id]);
+
+        $this->id = null;
+        return $this;
+
     }
 
 
