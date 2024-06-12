@@ -133,6 +133,13 @@ class TVShow
     {
     }
 
+    protected function update(): TVShow
+    {
+        $stmt = MyPdo::getInstance()->prepare('UPDATE tvshow SET name = ?,originalName = ?,homePage = ?,overview = ?,posterId= ? WHERE id = ?');
+        $stmt->execute([$this->name,$this->originalName,$this->homePage,$this->overview,$this->posterId,$this->id]);
+        return $this;
+    }
+
 
 
 }
