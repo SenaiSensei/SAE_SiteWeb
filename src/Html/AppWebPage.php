@@ -55,9 +55,9 @@ class AppWebPage extends WebPage
                 <title>$title</title>
             </head>
             <body>
-            <section class="menu">$menu</section>
+            <section class="menu">$menu<section class="filtre">$filtre</section></section>
             <section class="header"><h1>$title</h1></section>
-            <section class="filtre">$filtre</section>
+            
                 <section class="content">$body</section>
             </body>
             <footer><a class="footer">$lastModif</a></footer>
