@@ -27,15 +27,17 @@ $webPage->appendToHead("<meta name='description' content='Author: R.L., An app w
 
 $webPage->appendMenu("<a href='index.php?genre=0' class='menu_accueil'>Accueil</a>");
 $webPage->appendMenu("<a href='admin/tvshow-form.php' class='menu_create'>Création</a>");
-$webPage->appendFiltre("<form action='index.php' method='get' class='filter'><label class='filter_title'>Filtre :</label><label><input type='radio' name='genre' value='0'>Aucun</label></label>");
+
+$webPage->appendFiltre("<form action='index.php' method='get' class='filter'><label class='filter_title'>Filtre</label>
+<select name='genre'><option value='0'>Aucun</option>");
 $genres = CollectionGenre::findAll();
-
 foreach ($genres as $ligne) {
-    $webPage->appendFiltre("<label><input type='radio' name='genre' value='{$ligne->getId()}'>{$ligne->getName()}</label>");
+    $webPage->appendFiltre("<option value='{$ligne->getId()}'>{$ligne->getName()}</option>");
 }
+$webPage->appendFiltre("</select>
+<button type='submit'>Search</button></label></label></form>");
 
-
-$webPage->appendFiltre("<button type='submit'>Search</button></label></form>");
+$webPage->appendFiltre("");
 
 if (!ctype_digit($_GET['genre'])) {
     header('Location: http://localhost:8000/index.php?genre=0');
