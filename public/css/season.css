@@ -2,6 +2,11 @@
     font-size: 1em;
 }
 
+.menu {
+    flex-direction: column;
+    gap: 8px;
+}
+
 img {
     width: 50px;
 }
@@ -87,6 +92,16 @@ img {
     .header {
         font-size: 2em;
     }
+
+    .menu {
+        flex-direction: row;
+    }
+
+    .menu_accueil {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 @media (min-width: 210px) {
@@ -109,8 +124,28 @@ img {
         height: 725px;
     }
 }
-@media (min-width: 540px) {
+
+@media (max-height: 700px) {
     .content {
-        height: 645px;
+        height: 370px;
+    }
+}
+
+@media (min-width: 400px) {
+
+    .header {
+        font-size: 1.0em;
+    }
+}
+
+@media (min-width: 1200px) {
+    .header {
+        font-size: 2em;
+    }
+}
+
+@media (min-width: 1500px) {
+    .header {
+        font-size: 3em;
     }
 }
