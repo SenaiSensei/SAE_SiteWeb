@@ -48,6 +48,7 @@ if ($_GET['genre'] == 0) {
         <img src='poster.php?posterId={$ligne->getPosterId()}' alt='Poster'>
         <section> <section class='titre'>{$webPage->escapeString((string)$ligne->getName())}</section>
         <section class='description'>{$webPage->escapeString((string)$ligne->getOverview())}</section></section>
+        <form action='admin/tvshow-form.php' method='get' class='edit'><label><input name='tvShowId' value='{$webPage->escapeString((string)$ligne->getId())}' hidden='hidden'></label> <button type='submit'>Edit</button></form>
     </a>");
     }
 } else {
