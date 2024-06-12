@@ -12,16 +12,16 @@ class TVShow
     private ?int $id;
     private string $name;
     private string $originalName;
-    private ?string $homePage;
+    private string $homePage;
     private string $overview;
     private ?int $posterId;
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setId(int $id): TVShow
+    public function setId(?int $id): TVShow
     {
         $this->id = $id;
         return $this;
@@ -71,12 +71,12 @@ class TVShow
         return $this;
     }
 
-    public function getPosterId(): int
+    public function getPosterId(): ?int
     {
         return $this->posterId;
     }
 
-    public function setPosterId(int $posterId): TVShow
+    public function setPosterId(?int $posterId): TVShow
     {
         $this->posterId = $posterId;
         return $this;
@@ -117,14 +117,14 @@ class TVShow
         return $res[0];
     }
 
-    public static function create(?int $id = null, string $name, string $originalName, ?string $homePage = null, string $overview, ?int $posterId = null): self
+    public static function create(string $name, string $originalName, string $homePage, string $overview, ?int $id = null, ?int $posterId = null): self
     {
         $tvShow = new TVShow();
-        $tvShow->setId($id);
         $tvShow->setName($name);
         $tvShow->setOriginalName($originalName);
         $tvShow->setHomePage($homePage);
         $tvShow->setOverview($overview);
+        $tvShow->setId($id);
         $tvShow->setPosterId($posterId);
         return $tvShow;
     }
@@ -135,31 +135,30 @@ class TVShow
 
     protected function update(): TVShow
     {
-        $stmt = MyPdo::getInstance()->prepare('UPDATE tvshow SET name = ?,originalName = ?,homePage = ?,overview = ?,posterId= ? WHERE id = ?');
-        $stmt->execute([$this->name,$this->originalName,$this->homePage,$this->overview,$this->posterId,$this->id]);
+        $stmt = MyPdo::getInstance()->prepare('UPDATE tvshow SET name = ?,originalName = ?,homePage = ?,overview = ? WHERE id = ?');
+        $stmt->execute([$this->name,$this->originalName,$this->homePage,$this->overview,$this->id]);
         return $this;
     }
 
     protected function insert(): self
     {
         $stmt = MyPdo::getInstance()->prepare(
-            'INSERT INTO tvShow (name,originalName,overview) VALUES (:name,:originalName, :overview)'
+            'INSERT INTO tvshow (name,originalName,homepage,overview) VALUES (:name, :originalName,:homePage, :overview)'
         );
-        $stmt->execute([':name' => $this->name,':originalName' => $this->originalName,':overview' => $this->overview]);
-        $this->setId(intval(MyPdo::getInstance()->lastInsertId()));
+
+        $stmt->execute([':name' => $this->name,
+            ':originalName' => $this->originalName,
+            ':homePage' => $this->homePage,
+            ':overview' => $this->overview]);
+
+        $this->setId((int) MyPdo::getInstance()->lastInsertId());
+
         return $this;
     }
 
-    /**
-     * Sauvegarde un artiste.
-     * Créer un artiste si l'id est null ou non-existant.
-     * Modifie un artiste déjà existant si l'id existe.
-     *
-     * @return $this|TVShow
-     */
     public function save(): TVShow
     {
-        if ($this->getId() == null) {
+        if ($this->getId() === null) {
             $output = $this->insert();
         } else {
             $output = $this->update();
