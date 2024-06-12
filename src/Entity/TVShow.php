@@ -9,10 +9,10 @@ use PDO;
 
 class TVShow
 {
-    private int $id;
+    private ?int $id;
     private string $name;
     private string $originalName;
-    private string $homePage;
+    private ?string $homePage;
     private string $overview;
     private ?int $posterId;
 
@@ -115,6 +115,22 @@ class TVShow
             throw new EntityNotFoundException("No data has been found");
         }
         return $res[0];
+    }
+
+    public static function create(?int $id = null, string $name, string $originalName, string $homePage, ?string $overview = null, ?int $posterId = null): self
+    {
+        $tvShow = new TVShow();
+        $tvShow->setId($id);
+        $tvShow->setName($name);
+        $tvShow->setOriginalName($originalName);
+        $tvShow->setHomePage($homePage);
+        $tvShow->setOverview($overview);
+        $tvShow->setPosterId($posterId);
+        return $tvShow;
+    }
+
+    private function __construct()
+    {
     }
 
 
