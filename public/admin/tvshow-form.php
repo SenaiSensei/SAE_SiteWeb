@@ -14,6 +14,7 @@ try {
         $form = new TVShowForm($tvShow);
         $webPage->AppendMenu("<a href='http://localhost:8000' class='menu_accueil'>Accueil</a>");
         $webPage->appendContent($form->getHtmlForm("tvshow-save.php"));
+        $webPage->appendCssUrl("../css/form.css");
         echo $webPage->toHTML();
     } else {
         if (ctype_digit($_GET['tvShowId'])) {
