@@ -9,19 +9,19 @@ use PDO;
 
 class TVShow
 {
-    private int $id;
+    private ?int $id;
     private string $name;
     private string $originalName;
     private string $homePage;
     private string $overview;
     private ?int $posterId;
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setId(int $id): TVShow
+    public function setId(?int $id): TVShow
     {
         $this->id = $id;
         return $this;
@@ -71,12 +71,12 @@ class TVShow
         return $this;
     }
 
-    public function getPosterId(): int
+    public function getPosterId(): ?int
     {
         return $this->posterId;
     }
 
-    public function setPosterId(int $posterId): TVShow
+    public function setPosterId(?int $posterId): TVShow
     {
         $this->posterId = $posterId;
         return $this;
@@ -115,6 +115,55 @@ class TVShow
             throw new EntityNotFoundException("No data has been found");
         }
         return $res[0];
+    }
+
+    public static function create(string $name, string $originalName, string $homePage, string $overview, ?int $id = null, ?int $posterId = null): self
+    {
+        $tvShow = new TVShow();
+        $tvShow->setName($name);
+        $tvShow->setOriginalName($originalName);
+        $tvShow->setHomePage($homePage);
+        $tvShow->setOverview($overview);
+        $tvShow->setId($id);
+        $tvShow->setPosterId($posterId);
+        return $tvShow;
+    }
+
+    private function __construct()
+    {
+    }
+
+    protected function update(): TVShow
+    {
+        $stmt = MyPdo::getInstance()->prepare('UPDATE tvshow SET name = ?,originalName = ?,homePage = ?,overview = ? WHERE id = ?');
+        $stmt->execute([$this->name,$this->originalName,$this->homePage,$this->overview,$this->id]);
+        return $this;
+    }
+
+    protected function insert(): self
+    {
+        $stmt = MyPdo::getInstance()->prepare(
+            'INSERT INTO tvshow (name,originalName,homepage,overview) VALUES (:name, :originalName,:homePage, :overview)'
+        );
+
+        $stmt->execute([':name' => $this->name,
+            ':originalName' => $this->originalName,
+            ':homePage' => $this->homePage,
+            ':overview' => $this->overview]);
+
+        $this->setId((int) MyPdo::getInstance()->lastInsertId());
+
+        return $this;
+    }
+
+    public function save(): TVShow
+    {
+        if ($this->getId() === null) {
+            $output = $this->insert();
+        } else {
+            $output = $this->update();
+        }
+        return $output;
     }
 
 
