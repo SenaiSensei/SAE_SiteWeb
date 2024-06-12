@@ -117,7 +117,7 @@ class TVShow
         return $res[0];
     }
 
-    public static function create(?int $id = null, string $name, string $originalName, string $homePage, ?string $overview = null, ?int $posterId = null): self
+    public static function create(?int $id = null, string $name, string $originalName, ?string $homePage = null, string $overview, ?int $posterId = null): self
     {
         $tvShow = new TVShow();
         $tvShow->setId($id);
