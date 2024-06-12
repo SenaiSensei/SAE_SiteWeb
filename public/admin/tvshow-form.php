@@ -8,7 +8,7 @@ use Html\Form\TVShowForm;
 use Html\WebPage;
 
 try {
-    if (empty($_GET['tvShowId'])) {
+    if (!isset($_GET['tvShowId'])) {
         $tvShow = null;
         $webPage = new WebPage("Formulaire de création");
         $form = new TVShowForm($tvShow);
