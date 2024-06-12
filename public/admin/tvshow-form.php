@@ -5,20 +5,22 @@ use Entity\Exception\EntityNotFoundException;
 use Entity\Exception\ParameterException;
 use Entity\TVShow;
 use Html\Form\TVShowForm;
-use Html\WebPage;
+use Html\AppWebPage;
 
 try {
     if (!isset($_GET['tvShowId'])) {
         $tvShow = null;
-        $webPage = new WebPage("Formulaire de création");
+        $webPage = new AppWebPage("Formulaire de création");
         $form = new TVShowForm($tvShow);
+        $webPage->AppendMenu("<a href='http://localhost:8000' class='menu_accueil'>Accueil</a>");
         $webPage->appendContent($form->getHtmlForm("tvshow-save.php"));
         echo $webPage->toHTML();
     } else {
         if (ctype_digit($_GET['tvShowId'])) {
             $tvShow = TVShow::findById((int)$_GET['tvShowId']);
-            $webPage = new WebPage("Formulaire de création");
+            $webPage = new AppWebPage("Formulaire d'édition");
             $form = new TVShowForm($tvShow);
+            $webPage->AppendMenu("<a href='http://localhost:8000' class='menu_accueil'>Accueil</a>");
             $webPage->appendContent($form->getHtmlForm("tvshow-save.php"));
             echo $webPage->toHTML();
         } else {
