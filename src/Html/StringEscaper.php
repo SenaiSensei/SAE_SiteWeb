@@ -22,7 +22,7 @@ trait StringEscaper
     public function stripTagsAndTrim(?string $text): string
     {
         if ($text == null) {
-            $textStrip = null;
+            $textStrip = "";
         } else {
             $textStrip = strip_tags($text);
             $textStrip = trim($textStrip);
