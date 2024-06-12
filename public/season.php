@@ -30,7 +30,7 @@ $webPage->appendCssUrl("css/season.css");
 $webPage->appendToHead("<meta name='description' content='Author: V.D., An app web to view season shows on a database'>");
 
 $webPage->appendContent("<section class='serie'>
-    <img src='poster.php?posterId={$serie->getPosterId()}' alt='Poster' width='500'>
+    <img src='poster.php?posterId={$serie->getPosterId()}' alt='Poster'>
     <section class='serie_content'>
     <a class='title_serie'>{$serie->getName()}</a>
     <a class='origin_title_serie'>{$serie->getOriginalName()}</a>
@@ -41,7 +41,7 @@ $stmt = CollectionSeason::findByTVShowId((int)$_GET['tvShowId']);
 
 foreach ($stmt as $ligne) {
     $webPage->appendContent("<a class='season' href='episode.php?seasonId={$ligne->getId()}'>
-    <img src='poster.php?posterId={$ligne->getPosterId()}' alt='Poster' width='200'>
+    <img src='poster.php?posterId={$ligne->getPosterId()}' alt='Poster'>
     <section class='season_title'>{$ligne->getName()}</section>
 </a>");
 }
