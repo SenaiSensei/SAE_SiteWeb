@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Html;
@@ -16,5 +17,17 @@ trait StringEscaper
         $chaine = htmlspecialchars($text, ENT_QUOTES | ENT_HTML5 | ENT_SUBSTITUTE);
 
         return $chaine;
+    }
+
+    public function stripTagsAndTrim(?string $text): string
+    {
+        if ($text == null) {
+            $textStrip = null;
+        } else {
+            $textStrip = strip_tags($text);
+            $textStrip = trim($textStrip);
+        }
+        return $textStrip;
+
     }
 }
