@@ -30,7 +30,7 @@ class TVShowForm
     public function getHtmlForm(string $action): string
     {
         $form = <<<HTML
-            <form action="$action" name="" method="post"></form>
+            <form action="$action" method="post">
             <label><input name="id" type="hidden" value="{$this?->getTvShow()?->getId()}"></label>
         HTML;
         if ($this?->getTvShow()?->getName() != null) {
@@ -55,11 +55,11 @@ class TVShowForm
 
         if ($this->getTvShow()?->getHomePage() != null) {
             $form .= <<<HTML
-            <label class="homePage">HomePage : <input name="homePage" type="text" value="{$this->escapeString($this->getTvShow()?->getHomePage())}"></label>
+            <label class="homePage">HomePage : <input name="homePage" type="text" value="{$this->escapeString($this->getTvShow()?->getHomePage())}" required></label>
         HTML;
         } else {
             $form .= <<<HTML
-            <label class="homePage">Overview : <input name="homePage" type="text" value="" required></label>
+            <label class="homePage">HomePage : <input name="homePage" type="text" value="" required></label>
             HTML;
         }
 
@@ -84,42 +84,42 @@ class TVShowForm
     public function setEntityFromQueryString(): void
     {
 
-        if (ctype_digit($_POST['id']) and isset($_POST['id'])) {
+        if (isset($_POST['id']) and ctype_digit($_POST['id'])) {
             $queryStringId = (int)$_POST['id'];
-        } elseif ($_POST['id'] == null) {
+        } else  {
             $queryStringId = null;
         }
 
-        if (ctype_alpha($_POST['name']) and isset($_POST['name'])) {
+        if (isset($_POST['name'])) {
             $queryStringName = $_POST['name'];
-            $queryStringName->stripTagsAndTrim($queryStringName);
+            $queryStringName = $this->stripTagsAndTrim($queryStringName);
         } else {
             throw new ParameterException();
         }
 
-        if (ctype_alpha($_POST['originalName']) and isset($_POST['originalName'])) {
+        if (isset($_POST['originalName'])) {
             $queryStringOriginalName = $_POST['originalName'];
-            $queryStringOriginalName->stripTagsAndTrim($queryStringOriginalName);
+            $queryStringOriginalName = $this->stripTagsAndTrim($queryStringOriginalName);
         } else {
             throw new ParameterException();
         }
 
-        if (ctype_alpha($_POST['homePage'])) {
+        if (isset($_POST['homePage'])) {
             $queryStringHomePage = $_POST['homePage'];
-            $queryStringHomePage->stripTagsAndTrim($queryStringHomePage);
-        } elseif ($_POST['homePage'] == null) {
-            $queryStringHomePage = null;
+            $queryStringHomePage = $this->stripTagsAndTrim($queryStringHomePage);
+        } else {
+            throw new ParameterException();
         }
 
-        if (ctype_alpha($_POST['overview']) and isset($_POST['overview'])) {
+        if (isset($_POST['overview'])) {
             $queryStringOverview = $_POST['overview'];
-            $queryStringOverview->stripTagsAndTrim($queryStringOverview);
+            $queryStringOverview = $this->stripTagsAndTrim($queryStringOverview);
         } else {
             throw new ParameterException();
         }
 
         $tvShow = new TVShowForm();
-        $tvShow = $tvShow->getTvShow()->create($queryStringId, $queryStringName, $queryStringOriginalName, $queryStringHomePage, $queryStringOverview);
+        $tvShow = TVShow::create($queryStringName, $queryStringOriginalName, $queryStringHomePage,$queryStringOverview,$queryStringId);
         $this->tvShow = $tvShow;
     }
 }
