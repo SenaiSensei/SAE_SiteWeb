@@ -150,6 +150,23 @@ class TVShow
         return $this;
     }
 
+    /**
+     * Sauvegarde un artiste.
+     * Créer un artiste si l'id est null ou non-existant.
+     * Modifie un artiste déjà existant si l'id existe.
+     *
+     * @return $this|TVShow
+     */
+    public function save(): TVShow
+    {
+        if ($this->getId() == null) {
+            $output = $this->insert();
+        } else {
+            $output = $this->update();
+        }
+        return $output;
+    }
+
 
 
 }
