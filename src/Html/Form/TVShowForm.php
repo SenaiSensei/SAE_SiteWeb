@@ -33,27 +33,46 @@ class TVShowForm
             <form action="$action" name="" method="post"></form>
             <label><input name="id" type="hidden" value="{$this?->getTvShow()?->getId()}"></label>
         HTML;
-        if ($this->escapeString($this?->getTvShow()?->getName()) != null) {
+        if ($this?->getTvShow()?->getName() != null) {
             $form .= <<<HTML
-            <label class="Nom"><input name="name" type="text" value="{$this->escapeString($this->getTvShow()?->getName())}" required></label>
+            <label class="Nom">Name : <input name="name" type="text" value="{$this->escapeString($this->getTvShow()?->getName())}" required></label>
         HTML;
+        } else {
+            $form .= <<<HTML
+            <label class="Nom">Name : <input name="name" type="text" value="" required></label>
+            HTML;
         }
 
-        if ($this->escapeString($this->getTvShow()?->getOriginalName()) != null) {
+        if ($this->getTvShow()?->getOriginalName() != null) {
             $form .= <<<HTML
-            <label class="NomOriginal"><input name="originalName" type="text" value="{$this->escapeString($this->getTvShow()?->getOriginalName())}" required></label>
+            <label class="NomOriginal">Original Name : <input name="originalName" type="text" value="{$this->escapeString($this->getTvShow()?->getOriginalName())}" required></label>
         HTML;
+        } else {
+            $form .= <<<HTML
+            <label class="NomOriginal">Original Name : <input name="originalName" type="text" value="" required></label>
+            HTML;
         }
 
-        $form .= <<<HTML
-            <label class="homePage"><input name="homePage" type="text" value="{$this->escapeString($this->getTvShow()?->getHomePage())}"></label>
-        HTML;
-
-        if ($this->escapeString($this->getTvShow()?->getOverview()) != null) {
+        if ($this->getTvShow()?->getHomePage() != null) {
             $form .= <<<HTML
-            <label class="Overview"><input name="overview" type="text" value="{$this->escapeString($this->getTvShow()?->getOverview())}" required></label>
+            <label class="homePage">HomePage : <input name="homePage" type="text" value="{$this->escapeString($this->getTvShow()?->getHomePage())}"></label>
         HTML;
+        } else {
+            $form .= <<<HTML
+            <label class="homePage">Overview : <input name="homePage" type="text" value="" required></label>
+            HTML;
         }
+
+        if ($this->getTvShow()?->getOverview() != null) {
+            $form .= <<<HTML
+            <label class="Overview">Overview : <input name="overview" type="text" value="{$this->escapeString($this->getTvShow()?->getOverview())}" required></label>
+        HTML;
+        } else {
+            $form .= <<<HTML
+            <label class="Overview">Overview : <input name="overview" type="text" value="" required></label>
+            HTML;
+        }
+        
         $form .= <<<HTML
             <button type="submit">Save</button
             </form>
